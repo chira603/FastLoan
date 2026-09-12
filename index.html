@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FastLoan — Small loans, sorted fast</title>
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===================== TOP BAR ===================== -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="#" class="brand" data-tab-link="home">
+      <img src="assets/logo.png" alt="FastLoan" class="brand-logo">
+    </a>
+    <nav class="toptabs" role="tablist" aria-label="Main">
+      <button class="toptab is-active" data-tab-link="home" role="tab" aria-selected="true">Home</button>
+      <button class="toptab" data-tab-link="calculator" role="tab" aria-selected="false">Calculator</button>
+      <button class="toptab" data-tab-link="about" role="tab" aria-selected="false">About</button>
+      <button class="toptab" data-tab-link="terms" role="tab" aria-selected="false">Terms</button>
+      <button class="toptab" data-tab-link="apply" role="tab" aria-selected="false">Apply</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ===================== HOME ===================== -->
+<section class="panel is-active" id="panel-home" data-panel="home">
+
+  <div class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow-plain">Loans from ₹1,000 to ₹5,000</p>
+      <h1>A small loan, sorted<br>before the day is out.</h1>
+      <p class="hero-sub">FastLoan covers short, specific gaps — a bill, a repair, a bridge to payday. One form, a real person reviews it, and you see the full cost before you say yes.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" data-tab-link="calculator">Check what it costs</button>
+        <button class="btn btn-ghost" data-tab-link="apply">Apply now</button>
+      </div>
+    </div>
+    <div class="hero-figure" aria-hidden="true">
+      <svg viewBox="0 0 340 340" class="hero-svg">
+        <defs>
+          <linearGradient id="barGrad" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stop-color="#1a58d6"/>
+            <stop offset="100%" stop-color="#2cc7f2"/>
+          </linearGradient>
+          <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#2cc7f2" stop-opacity="0.5"/>
+            <stop offset="100%" stop-color="#2cc7f2" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <circle cx="170" cy="170" r="152" class="hf-ring"/>
+        <circle cx="170" cy="170" r="152" fill="none" stroke="url(#ringGrad)" stroke-width="1.5" stroke-dasharray="4 10"/>
+        <rect x="96"  y="196" width="26" height="60" rx="4" fill="url(#barGrad)" opacity="0.9"/>
+        <rect x="132" y="164" width="26" height="92" rx="4" fill="url(#barGrad)"/>
+        <rect x="168" y="128" width="26" height="128" rx="4" fill="url(#barGrad)"/>
+        <path d="M96 150 L150 108 L196 132 L246 78" class="hf-line"/>
+        <path d="M212 78 L246 78 L246 112" class="hf-arrow"/>
+        <circle cx="150" cy="235" r="40" class="hf-coin"/>
+        <text x="150" y="247" class="hf-rupee" text-anchor="middle">₹</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat"><span class="stat-num">₹1K–5K</span><span class="stat-label">loan range</span></div>
+    <div class="stat"><span class="stat-num">1–4</span><span class="stat-label">months tenure</span></div>
+    <div class="stat"><span class="stat-num">0</span><span class="stat-label">cost to apply</span></div>
+    <div class="stat"><span class="stat-num">100%</span><span class="stat-label">cost shown upfront</span></div>
+  </div>
+
+  <div class="section-head">
+    <h2>How a FastLoan works</h2>
+  </div>
+  <ol class="steps timeline">
+    <li class="step"><span class="step-index">1</span><h3>Fill the form</h3><p>Name, amount, purpose, and how you'll repay it. Two minutes.</p></li>
+    <li class="step"><span class="step-index">2</span><h3>We review it</h3><p>A person on our team looks at your situation and decides — no automated score.</p></li>
+    <li class="step"><span class="step-index">3</span><h3>See your terms</h3><p>Amount you'll receive, EMI, and total cost — all shown before you accept.</p></li>
+    <li class="step"><span class="step-index">4</span><h3>Money in your account</h3><p>Accept the offer and the amount is transferred directly to you.</p></li>
+  </ol>
+
+  <div class="cta-band">
+    <div>
+      <h2>Not sure what it'll cost you?</h2>
+      <p>Use the calculator — move the amount and tenure, see the exact numbers.</p>
+    </div>
+    <button class="btn btn-primary" data-tab-link="calculator">Open calculator</button>
+  </div>
+
+</section>
+
+<!-- ===================== CALCULATOR ===================== -->
+<section class="panel" id="panel-calculator" data-panel="calculator">
+
+  <div class="section-head">
+    <h2>Work out your loan</h2>
+    <p>Pick an amount and a tenure — every rupee of the cost is shown below, before you apply.</p>
+  </div>
+
+  <div class="calc-layout">
+
+    <div class="calc-inputs">
+      <div class="control">
+        <div class="control-label">
+          <label for="amount">Loan amount</label>
+          <span class="control-value" id="amountValue">₹5,000</span>
+        </div>
+        <input type="range" id="amount" min="1000" max="5000" step="100" value="5000">
+        <div class="range-ends"><span>₹1,000</span><span>₹5,000</span></div>
+      </div>
+
+      <div class="control">
+        <div class="control-label"><label>Tenure</label></div>
+        <div class="segmented" id="tenureTabs" role="tablist" aria-label="Tenure in months">
+          <button class="seg is-active" data-months="1" role="tab" aria-selected="true">1 month</button>
+          <button class="seg" data-months="2" role="tab" aria-selected="false">2 months</button>
+          <button class="seg" data-months="3" role="tab" aria-selected="false">3 months</button>
+          <button class="seg" data-months="4" role="tab" aria-selected="false">4 months</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="calc-results">
+
+      <div class="result-hero">
+        <div class="result-hero-main">
+          <span class="result-hero-label">Amount you'll receive</span>
+          <span class="result-hero-value" id="disbursedValue">₹4,900</span>
+          <span class="result-hero-sub" id="feeNote">after a ₹100 one-time processing fee</span>
+        </div>
+        <div class="result-hero-emi">
+          <span class="result-hero-label">Monthly EMI</span>
+          <span class="result-hero-value result-hero-value--accent" id="emiValue">₹5,900</span>
+        </div>
+      </div>
+
+      <div class="breakdown">
+        <div class="breakdown-row"><span>Loan amount requested</span><b id="bd-amount">₹5,000</b></div>
+        <div class="breakdown-row breakdown-row--neg"><span>Processing fee (one-time cut)</span><b id="bd-fee">−₹100</b></div>
+        <div class="breakdown-row breakdown-row--total"><span>Amount disbursed to you</span><b id="bd-disbursed">₹4,900</b></div>
+        <div class="breakdown-divider"></div>
+        <div class="breakdown-row"><span>Service charge over tenure</span><b id="bd-service">₹900</b></div>
+        <div class="breakdown-row"><span>Total repayable (in EMIs)</span><b id="bd-repayable">₹5,900</b></div>
+        <div class="breakdown-row breakdown-row--total"><span>Total cost of this loan</span><b id="bd-totalcost">₹1,000</b></div>
+      </div>
+
+      <div class="chart-card">
+        <p class="chart-title">What you receive vs. what it costs</p>
+        <canvas id="splitChart" height="180"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="schedule-wrap">
+    <p class="chart-title">Your repayment schedule</p>
+    <div class="table-scroll">
+      <table class="schedule-table">
+        <thead>
+          <tr><th>Month</th><th>EMI due</th><th>Total paid so far</th><th>Balance remaining</th></tr>
+        </thead>
+        <tbody id="scheduleBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <p class="calc-disclaimer">These figures are indicative. Your final rate depends on our team's review of your application.</p>
+
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section class="panel" id="panel-about" data-panel="about">
+
+  <div class="section-head">
+    <h2>About FastLoan</h2>
+  </div>
+
+  <div class="about-copy">
+    <p>FastLoan exists for the loans banks don't bother with — small, short, and needed now. We lend between ₹1,000 and ₹5,000, repaid over one to four months, to people covering a genuine short-term gap: a bill that landed early, a repair, a bridge until the next payday.</p>
+    <p>We don't run your file through a scoring model and hand you a rejection. A person on our team looks at what you've told us and decides based on your actual situation. If the amount or the timing doesn't work for you, we'll tell you before you apply, not after.</p>
+    <p>Every offer we send shows the full cost of the loan — the processing fee, the service charge, and the exact EMI — worked out before you accept anything. No part of the cost is revealed later.</p>
+  </div>
+
+  <div class="values">
+    <div class="value-item">
+      <h3>Speed</h3>
+      <p>Most applications get a first response within a day, not a week.</p>
+    </div>
+    <div class="value-item">
+      <h3>Transparency</h3>
+      <p>The processing fee and service charge are shown as separate line items, always.</p>
+    </div>
+    <div class="value-item">
+      <h3>Human review</h3>
+      <p>Every application is read by someone, not just scored and auto-rejected.</p>
+    </div>
+    <div class="value-item">
+      <h3>Manageable amounts</h3>
+      <p>We stay deliberately small — ₹1,000 to ₹5,000 — so repayment stays realistic.</p>
+    </div>
+  </div>
+
+  <div class="cta-band">
+    <div>
+      <h2>Ready to apply?</h2>
+      <p>The form takes about two minutes.</p>
+    </div>
+    <button class="btn btn-primary" data-tab-link="apply">Go to application</button>
+  </div>
+
+</section>
+
+<!-- ===================== TERMS ===================== -->
+<section class="panel" id="panel-terms" data-panel="terms">
+
+  <div class="section-head">
+    <h2>Terms &amp; conditions</h2>
+    <p>The short version: we tell you the full cost upfront, and expect repayment on the dates agreed. The full clauses are below.</p>
+  </div>
+
+  <div class="accordion" id="termsAccordion">
+
+    <div class="acc-item is-open">
+      <button class="acc-trigger">
+        <span class="acc-num">01</span>
+        <span class="acc-title">Eligibility</span>
+        <span class="acc-chevron" aria-hidden="true"></span>
+      </button>
+      <div class="acc-panel">
+        <p>You must be at least 18 years old, a resident of India, and hold a valid government ID and an active bank account in your own name. FastLoan may request additional verification before disbursing any amount.</p>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-trigger">
+        <span class="acc-num">02</span>
+        <span class="acc-title">Loan amount &amp; tenure</span>
+        <span class="acc-chevron" aria-hidden="true"></span>
+      </button>
+      <div class="acc-panel">
+        <p>Loans are offered between ₹1,000 and ₹5,000, repayable over a tenure of 1 to 4 months as agreed at the time of disbursal. The final amount and tenure approved may differ from what was requested, based on our team's review.</p>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-trigger">
+        <span class="acc-num">03</span>
+        <span class="acc-title">Fees &amp; charges</span>
+        <span class="acc-chevron" aria-hidden="true"></span>
+      </button>
+      <div class="acc-panel">
+        <p>A one-time processing fee is deducted from the loan amount before disbursal. A service charge, calculated on the loan amount and tenure, is included in the EMI schedule. Both figures are shown in full before you accept an offer, and neither changes after acceptance.</p>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-trigger">
+        <span class="acc-num">04</span>
+        <span class="acc-title">Repayment</span>
+        <span class="acc-chevron" aria-hidden="true"></span>
+      </button>
+      <div class="acc-panel">
+        <p>EMIs are due on the dates set out in your offer, typically in equal monthly instalments. Repayment can be made through the method shared by our team at disbursal.</p>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-trigger">
+        <span class="acc-num">05</span>
+        <span class="acc-title">Late payment</span>
+        <span class="acc-chevron" aria-hidden="true"></span>
+      </button>
+      <div class="acc-panel">
+        <p>Missed due dates may attract additional charges. Continued non-payment may be referred to recovery and reported as permitted under applicable regulations. If you expect to miss a payment, contact our team beforehand — we'd rather work out a plan than escalate.</p>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-trigger">
+        <span class="acc-num">06</span>
+        <span class="acc-title">Prepayment</span>
+        <span class="acc-chevron" aria-hidden="true"></span>
+      </button>
+      <div class="acc-panel">
+        <p>You may repay your loan in full before the end of its tenure. Ask our team about any adjustment to the service charge for early closure.</p>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-trigger">
+        <span class="acc-num">07</span>
+        <span class="acc-title">Data &amp; privacy</span>
+        <span class="acc-chevron" aria-hidden="true"></span>
+      </button>
+      <div class="acc-panel">
+        <p>Information you share is used only to assess and service your application, and is not sold or shared beyond what's needed for servicing your loan or meeting a regulatory requirement.</p>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-trigger">
+        <span class="acc-num">08</span>
+        <span class="acc-title">Right to decline</span>
+        <span class="acc-chevron" aria-hidden="true"></span>
+      </button>
+      <div class="acc-panel">
+        <p>FastLoan may decline any application, or offer a lower amount or a different tenure than requested, without being obligated to give a specific reason.</p>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-trigger">
+        <span class="acc-num">09</span>
+        <span class="acc-title">Changes to these terms</span>
+        <span class="acc-chevron" aria-hidden="true"></span>
+      </button>
+      <div class="acc-panel">
+        <p>These terms may be updated from time to time. The version in effect at the time your offer is made applies to that loan for its full tenure.</p>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-trigger">
+        <span class="acc-num">10</span>
+        <span class="acc-title">Questions or complaints</span>
+        <span class="acc-chevron" aria-hidden="true"></span>
+      </button>
+      <div class="acc-panel">
+        <p>For any question about your loan or these terms, use the contact details shared with you in your offer communication. We aim to respond within one working day.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="calc-disclaimer">This summary is provided for clarity and does not replace the specific terms confirmed in your individual loan offer.</p>
+
+</section>
+
+<!-- ===================== APPLY ===================== -->
+<section class="panel" id="panel-apply" data-panel="apply">
+
+  <div class="section-head">
+    <h2>Apply for your loan</h2>
+    <p>This runs on a secure Google Form — your details go straight into our review team's sheet.</p>
+  </div>
+
+  <div class="apply-layout">
+    <div class="apply-form-wrap">
+      <iframe
+        class="gform-embed"
+        src="https://docs.google.com/forms/d/e/1FAIpQLSfrgF_SKfH5l1sU2poVe61lSnhi9npgkN5qor1ADT2dm_Ra_Q/viewform?embedded=true"
+        title="FastLoan application form">
+        Loading form…
+      </iframe>
+    </div>
+    <aside class="apply-side">
+      <h3>What you'll need</h3>
+      <ul class="apply-checklist">
+        <li>Full name &amp; phone number</li>
+        <li>Loan amount, ₹1,000–₹5,000</li>
+        <li>Preferred tenure, 1–4 months</li>
+        <li>Purpose &amp; monthly income</li>
+      </ul>
+      <a class="btn btn-primary btn-block" href="https://docs.google.com/forms/d/e/1FAIpQLSfrgF_SKfH5l1sU2poVe61lSnhi9npgkN5qor1ADT2dm_Ra_Q/viewform" target="_blank" rel="noopener">Open form in a new tab</a>
+      <p class="apply-note">Can't see the form above? Some browsers block embedded forms — use the button instead.</p>
+      <p class="apply-note">By submitting, you agree to our <a class="inline-link" data-tab-link="terms">terms &amp; conditions</a>.</p>
+    </aside>
+  </div>
+
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <img src="assets/logo.png" alt="FastLoan" class="footer-logo">
+  <p class="footer-disclaimer">FastLoan is a loan facilitation service. Figures shown by the calculator are indicative estimates, not a binding offer. Final terms are confirmed after review.</p>
+  <p class="footer-links"><a data-tab-link="terms">Terms &amp; conditions</a><span>·</span><a data-tab-link="about">About</a><span>·</span><a data-tab-link="apply">Apply</a></p>
+  <p class="footer-copy">© 2026 FastLoan. All rights reserved.</p>
+</footer>
+
+<!-- ===================== MOBILE BOTTOM NAV ===================== -->
+<nav class="bottomnav" aria-label="Main mobile">
+  <button class="bnav-item is-active" data-tab-link="home" aria-label="Home">
+    <svg viewBox="0 0 24 24"><path d="M4 11.5 12 5l8 6.5V19a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1z"/></svg>
+    <span>Home</span>
+  </button>
+  <button class="bnav-item" data-tab-link="calculator" aria-label="Calculator">
+    <svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h2M12 11h2M16 11h0M8 15h2M12 15h2M16 15h0" class="bnav-inner"/></svg>
+    <span>Calculator</span>
+  </button>
+  <button class="bnav-item" data-tab-link="about" aria-label="About">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.01" class="bnav-inner"/></svg>
+    <span>About</span>
+  </button>
+  <button class="bnav-item" data-tab-link="terms" aria-label="Terms">
+    <svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M8.5 9h6M8.5 12.5h6M8.5 16h4" class="bnav-inner"/></svg>
+    <span>Terms</span>
+  </button>
+  <button class="bnav-item" data-tab-link="apply" aria-label="Apply">
+    <svg viewBox="0 0 24 24"><path d="M7 3h8l4 4v14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M9 12h6M9 16h6M9 8h3" class="bnav-inner"/></svg>
+    <span>Apply</span>
+  </button>
+</nav>
+
+<script src="script.js"></script>
+</body>
+</html>
